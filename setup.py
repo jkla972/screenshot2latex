@@ -11,6 +11,7 @@ setup(name='screenshot2latex',
       install_requires=[
           'pyperclip',
       ],
+      scripts=['scripts/screenshot2latex'],
       extras_require={},
       packages=find_packages(),	
 )
