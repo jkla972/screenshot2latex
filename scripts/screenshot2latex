@@ -1,0 +1,39 @@
+#!/usr/bin/env python
+import base64
+import requests
+import json
+from subprocess import call
+import pyperclip
+import os
+import random
+import string
+
+app_id = os.environ["MATHPIX_ID"]
+app_key = os.environ["MATHPIX_KEY"]
+
+if not (app_id and app_key):
+	print("abort: account details")
+	exit()
+
+rand_name = ''.join(random.choices(string.ascii_lowercase, k=5))
+file_path = "/tmp/" + rand_name + ".png"
+
+if call(["gnome-screenshot", "-a", "-f", file_path]) != 0:
+	print("abort: error taking screenshot")
+	exit()
+
+if not os.path.exists(file_path):
+	print("abort: no screenshot taken")
+	exit()
+
+image_uri = "data:image/jpg;base64," + base64.b64encode(open(file_path, "rb").read()).decode("utf-8")
+r = requests.post("https://api.mathpix.com/v3/latex",
+    data=json.dumps({'src': image_uri,
+        'formats': ['latex_normal', 'latex_styled']}),
+    headers={"app_id": app_id, "app_key": app_key,
+        "Content-type": "application/json"})
+print(json.dumps(json.loads(r.text), indent=4, sort_keys=True))
+
+latex = json.loads(r.text).get("latex_normal", "not recognized")
+
+pyperclip.copy(latex)
