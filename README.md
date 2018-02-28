@@ -13,7 +13,7 @@
 
 ## Install
 ```bash
-pip install git+git://github.com/tangentlabs/django-oscar.git
+pip install git+git@github.com:rmst/screenshot2latex.git
 ```
 
 Add Mathpix credentials to bash `.bashrc`
