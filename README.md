@@ -1,7 +1,9 @@
 # screenshot2latex
-takes a screenshot, converts it to latex, pastes latex to clipboard
+1) takes screenshot
+2) converts it to latex (using https://mathpix.com)
+3) pastes latex to clipboard
 
-Run in the terminal with
+## Run
 `screenshot2latex`
 
 ## Requirements
@@ -9,10 +11,9 @@ Run in the terminal with
 - gnome-screenshot
 - [Mathpix credentials](https://dashboard.mathpix.com)
 
-## Setup
-Install
+## Install
 ```bash
-pip install git+git://github.com/tangentlabs/django-oscar.git
+pip install git+ssh://git@github.com/rmst/screenshot2latex.git
 ```
 
 Add Mathpix credentials to bash `.bashrc`
@@ -24,4 +25,6 @@ export MATHPIX_KEY="MATHPIX_KEY"
 
 ## Tips
 
-On Ubuntu/Gnome: assing a keyboard shortcut to screenshot2latex go to `Settings/Keyboard/Custom Shortcuts` click on `+` and add `screenshot2latex`
+On Ubuntu/Gnome: assing a keyboard shortcut to screenshot2latex go to `Settings/Keyboard/Custom Shortcuts` click on `+` and add `screenshot2latex` as command.
+
+You might have to restart the computer to make the credentials available to the shell (e.g. gnome).
